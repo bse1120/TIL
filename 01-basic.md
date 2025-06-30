@@ -6,6 +6,8 @@
 
 ---
 
+Subject: Git Basic Day 1
+
 ## 📘 What I Learned
 
 - ✨ `git init` : Git 저장소 초기화
@@ -63,4 +65,3 @@ git push origin main
 
 git status
 → 현재 상태 확인
-
