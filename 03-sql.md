@@ -108,4 +108,4 @@ Subject: SQL Basic DAY 1
 
 -	https://sqlzoo.net
 -	https://www.w3schools.com/sql/
--	오늘 실습 파일: 01-createdb.sql ~ 06-alter.sql
+-	오늘 실습 파일: 01-createdb.sql ~ 06-alter.sql 
