@@ -129,22 +129,22 @@ Subject: SQL Basic DAY 2
 
 ✅ 기본 문법 및 기능
 
-- •	SELECT: 데이터 조회
-- •	FROM: 조회할 테이블 지정
-- •	WHERE: 조건 지정
-- •	ORDER BY: 정렬 기준 설정 (기본값: 오름차순 ASC / 내림차순 DESC)
-- •	LIMIT: 조회할 결과 개수 제한
-- •	OFFSET: 결과 시작 위치 지정 (페이징 처리)
+- SELECT: 데이터 조회
+- FROM: 조회할 테이블 지정
+- WHERE: 조건 지정
+- ORDER BY: 정렬 기준 설정 (기본값: 오름차순 ASC / 내림차순 DESC)
+- LIMIT: 조회할 결과 개수 제한
+- OFFSET: 결과 시작 위치 지정 (페이징 처리)
 
 ✅ 테이블 및 데이터 조작
 
-- •	DROP TABLE 테이블명 : 테이블 삭제
-- •	CREATE TABLE : 테이블 생성
-- •	DESC 테이블명 : 테이블 구조 확인
-- •	INSERT INTO : 데이터 삽입
-- •	UPDATE : 데이터 수정
-- •	ALTER TABLE : 테이블 구조 변경 (ADD, MODIFY 등)
-- •	DELETE FROM : 데이터 삭제
+- DROP TABLE 테이블명 : 테이블 삭제
+- CREATE TABLE : 테이블 생성
+- DESC 테이블명 : 테이블 구조 확인
+- INSERT INTO : 데이터 삽입
+- UPDATE : 데이터 수정
+- ALTER TABLE : 테이블 구조 변경 (ADD, MODIFY 등)
+- DELETE FROM : 데이터 삭제
 
 ---
 
@@ -152,23 +152,23 @@ Subject: SQL Basic DAY 2
 
 📂 실습 1: students 테이블
 
-- •	나이(age), 이름(name) 기준으로 다양한 조건 조회 실습
-- •	LIKE, BETWEEN, IN, NOT, != 등 다양한 조건문 학습
-- •	ORDER BY로 다중 정렬 실습 (예: age ASC, grade DESC)
-- •	ALTER TABLE로 컬럼 추가 및 데이터 업데이트 (grade 컬럼추가 → 'A', 'B', 'C' 등급 설정)
+- 나이(age), 이름(name) 기준으로 다양한 조건 조회 실습
+- LIKE, BETWEEN, IN, NOT, != 등 다양한 조건문 학습
+- ORDER BY로 다중 정렬 실습 (예: age ASC, grade DESC)
+- ALTER TABLE로 컬럼 추가 및 데이터 업데이트 (grade 컬럼추가 → 'A', 'B', 'C' 등급 설정)
 
 📂 실습 2: userinfo 테이블
 
-- •	이메일 도메인(gmail, naver 등) 필터링
-- •	IS NULL, IS NOT NULL 조건 확인
-- •	이름, 전화번호, 나이 정렬 및 페이지네이션(LIMIT, OFFSET) 실습
-- •	WHERE절 내 AND, OR, 괄호를 활용한 복합 조건 검색
+- 이메일 도메인(gmail, naver 등) 필터링
+- IS NULL, IS NOT NULL 조건 확인
+- 이름, 전화번호, 나이 정렬 및 페이지네이션(LIMIT, OFFSET) 실습
+- WHERE절 내 AND, OR, 괄호를 활용한 복합 조건 검색
 
 📂 실습 3: dt_demo 테이블 (데이터타입)
 
-- •	다양한 데이터 타입 실습:
+- 다양한 데이터 타입 실습:
 - VARCHAR, INT, FLOAT, DECIMAL, TEXT, DATE, DATETIME, BOOLEAN
-- •	날짜(birth), 점수(score), 설명(description) 등을 조건으로 활용한 필터링
+- 날짜(birth), 점수(score), 설명(description) 등을 조건으로 활용한 필터링
 
 ---
 
@@ -183,15 +183,15 @@ Subject: SQL Basic DAY 2
 
 •	예시:
 
-SELECT CONCAT(name, '(', score, ')') AS info FROM dt_demo;
-SELECT REPLACE(description, '학생', '**') AS secret FROM dt_demo;
+- SELECT CONCAT(name, '(', score, ')') AS info FROM dt_demo;
+- SELECT REPLACE(description, '학생', '**') AS secret FROM dt_demo;
 
 ---
 
 ## 🧠 Summary
-•	다양한 조건 필터링, 정렬, 페이징 처리 방법을 실습하며 SQL 쿼리 작성 능력을 키웠다.
-•	문자열 함수는 텍스트 전처리 시 유용하게 사용될 수 있다는 점이 인상 깊었다.
-•	특히 LIKE, IN, BETWEEN, IS NULL과 같은 구문은 실무에서 자주 사용할 것으로 보인다.
+-	다양한 조건 필터링, 정렬, 페이징 처리 방법을 실습하며 SQL 쿼리 작성 능력을 키웠다.
+-	문자열 함수는 텍스트 전처리 시 유용하게 사용될 수 있다는 점이 인상 깊었다.
+-	특히 LIKE, IN, BETWEEN, IS NULL과 같은 구문은 실무에서 자주 사용할 것으로 보인다.
 
 ---
 
@@ -205,10 +205,10 @@ SELECT REPLACE(description, '학생', '**') AS secret FROM dt_demo;
 
 ## 🗂️ Reference
 
-- •	SQLZOO
-- •	W3Schools SQL Tutorial
-- •	실습 파일 07-select.sql ~ 10-str-func.sql
-- •	https://programmers.co.kr/learn/challenges?tab=all_challenges 
-- •	https://solvesql.com/problems/
-- •	https://www.hackerrank.com/domains/sql
-- •	https://www.testdome.com/tests
+-	SQLZOO
+-	W3Schools SQL Tutorial
+-	실습 파일 07-select.sql ~ 10-str-func.sql
+-	https://programmers.co.kr/learn/challenges?tab=all_challenges 
+-	https://solvesql.com/problems/
+-	https://www.hackerrank.com/domains/sql
+-	https://www.testdome.com/tests
