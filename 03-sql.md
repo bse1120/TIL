@@ -212,3 +212,114 @@ Subject: SQL Basic DAY 2
 -	https://solvesql.com/problems/
 -	https://www.hackerrank.com/domains/sql
 -	https://www.testdome.com/tests
+
+
+
+
+
+
+
+## 🌱 Today I Learned
+
+## 📅 Date
+2025-07-02
+
+## Subject: SQL Basic DAY 3
+
+---
+
+## 📘 What I Learned
+
+✅ 날짜 및 시간 함수
+
+- 함수	설명
+- NOW() / CURRENT_TIMESTAMP	현재 날짜+시간
+- CURDATE() / CURRENT_DATE	오늘 날짜
+- CURTIME() / CURRENT_TIME	현재 시간
+- DATE_FORMAT(date, '패턴')	날짜를 특정 형식으로 출력
+- DATEDIFF(date1, date2)	두 날짜 간 일수 차이
+- TIMESTAMPDIFF(단위, date1, date2)	년, 월, 일 단위로 차이 계산
+- DATE_ADD(date, INTERVAL X)	날짜 더하기
+- DATE_SUB(date, INTERVAL X)	날짜 빼기
+- YEAR(date), MONTH(), DAY()	날짜에서 연/월/일 추출
+- QUARTER(date)	몇 분기인지 반환
+- DAYOFWEEK(), DAYNAME()	요일 번호/이름 반환
+
+---
+
+✅ 숫자 함수
+
+- 함수	설명
+- ROUND(num, d)	반올림
+- CEIL(num)	올림
+- FLOOR(num)	내림
+- TRUNCATE(num, d)	특정 소수점 자리수 이하 절삭
+- DIV, %, MOD()	몫, 나머지
+- POWER(x, y)	x의 y제곱
+- SQRT(x)	제곱근
+- ABS(x)	절댓값
+
+---
+
+✅ 조건문 함수
+
+- 문법	설명
+- IF(조건, 참, 거짓)	조건 판단 후 분기
+- IFNULL(col, 값)	NULL이면 기본값
+- CASE WHEN ... THEN ... ELSE ... END	복수 조건 분기
+
+---
+
+## 🔍 Detail
+
+📂 dt_demo 테이블 실습
+
+-	DATE_FORMAT()으로 날짜를 다양한 포맷으로 출력
+-	TIMESTAMPDIFF()로 나이 계산
+-	DATE_ADD()/DATE_SUB()로 날짜 연산
+-	YEAR(), MONTH(), DAY(), DAYNAME() 등으로 날짜 정보 추출
+-	ROUND(), CEIL(), FLOOR() 등의 숫자 함수로 점수 처리
+-	IF, CASE 구문을 활용해 학점, 연령대, 상태 분류
+
+📂 종합 정보 조회
+
+-	NULL 처리 (IFNULL)
+-	ROUND(score, 1) 및 CASE로 등급 평가
+-	TIMESTAMPDIFF()로 나이 계산
+-	IF() 조건으로 활성/비활성 구분
+-	CASE로 연령대 분류 (청년/청장년/장년 등)
+
+📂 sales 테이블 실습
+
+-	COUNT(*), SUM(), AVG(), MIN(), MAX() 등 집계함수 실습
+-	GROUP BY로 카테고리별, 지역별, 사원별 매출 분석
+-	HAVING으로 그룹핑된 결과 필터링 (예: 매출 1천만원 이상 등)
+-	월별 트렌드 분석 (MAU, 주문건수, 매출액 등)
+
+---
+
+## 🧠 Summary
+
+-	날짜/시간 데이터를 가공해 나이, 요일, 가입경과일 등 실무에 유용한 정보로 변환하는 방법을 익혔다.
+-	IF, CASE, IFNULL 등 조건 함수는 데이터 전처리에 핵심적인 기능으로 보였다.
+-	집계함수 + GROUP BY + HAVING을 조합해 피벗 테이블처럼 데이터 요약 및 분석하는 능력을 키울 수 있었다.
+
+---
+
+## 💬 느낀점
+
+- 날짜 및 숫자 함수는 단순 조회를 넘어서 유의미한 정보를 추출하는 데에 매우 유용하다는 점이 인상 깊었다.
+- 특히 GROUP BY + HAVING은 실제 리포트 작성, 대시보드 설계 시 자주 쓰일 개념이라 익숙해지기 위해 반복 연습이 필요하다고 느꼈다.
+
+---
+
+## 🗂️ Reference
+
+-	실습 파일: 11-datetime-func.sql ~ 15-having.sql
+-	https://school.programmers.co.kr
+- https://sqlzoo.net
+- https://www.w3schools.com › sql
+- https://solvesql.com
+- https://www.hackerrank.com › domains › sql
+- https://www.testdome.com
+
