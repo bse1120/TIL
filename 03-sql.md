@@ -332,9 +332,9 @@ Subject: SQL Basic DAY 2
 ## 🌱 Today I Learned
 
 ## 📅 Date
-2025-06-30
+2025-07-03
 
-## Subject: SQL Basic Day 2 — Subquery & Join 실습
+## Subject: SQL Basic Day 4 — Subquery & Join 실습
 
 ---
 
