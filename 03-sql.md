@@ -323,3 +323,132 @@ Subject: SQL Basic DAY 2
 - https://www.hackerrank.com › domains › sql
 - https://www.testdome.com
 
+
+
+
+
+
+
+## 🌱 Today I Learned
+
+## 📅 Date
+2025-06-30
+
+## Subject: SQL Basic Day 2 — Subquery & Join 실습
+
+---
+
+## 📘 What I Learned
+
+- ✨ 서브쿼리(Subquery) : 쿼리 안에 또 다른 쿼리를 작성해 조건으로 활용하는 기법
+- ✨ JOIN : 여러 테이블을 연결하여 하나의 결과로 보여주는 방법
+- ✨ GROUP BY + 집계함수 : 그룹별로 데이터 요약
+
+---
+
+## 🔍 Subquery 이론 요약
+
+😆 서브쿼리란?
+- SQL 쿼리 내부에 들어가는 또 하나의 쿼리
+- 예시:
+- SELECT * FROM sales
+- WHERE total_amount > (SELECT AVG(total_amount) FROM sales);
+
+😆 서브쿼리 종류
+
+- 단일값 서브쿼리 (Scalar) : =, >, < 와 함께 사용
+- 다중값 서브쿼리 (Vector, Matrix) : IN, EXISTS, ANY, ALL 등과 함께 사용
+
+😆 자주 나오는 문제 유형 3가지
+
+- 평균/최대/최소값 등과 비교한다
+-	"~~한 사람들"의 ~~~을 조회한다
+-	"~~~한 적이 있는" 사람을 찾는다
+
+⚠️ 서브쿼리를 쓰지 않는 경우
+
+-	단순한 고정값 조건 (WHERE age > 30)
+-	JOIN이 더 직관적일 때 (고객정보 + 주문정보 등)
+
+---
+
+🔍 실습 요약
+
+✅ 단일값 서브쿼리
+
+-- 평균보다 높은 주문
+
+- SELECT * FROM sales
+- WHERE total_amount > (SELECT AVG(total_amount) FROM sales);
+
+-- 가장 최근 주문
+
+- SELECT * FROM sales
+- WHERE order_date = (SELECT MAX(order_date) FROM sales);
+
+✅ 다중값 서브쿼리
+
+-- VIP 고객의 주문
+
+- ELECT * FROM sales
+- WHERE customer_id IN (
+-  SELECT customer_id FROM customers WHERE customer_type = 'VIP'
+);
+
+-- 전자제품 구매 고객의 전체 주문
+
+- SELECT * FROM sales
+- WHERE customer_id IN (
+-  SELECT DISTINCT customer_id FROM sales WHERE category = '전자제품'
+);
+
+✅ JOIN 활용 예시
+
+-- 고객정보 + 주문 JOIN
+
+- SELECT *
+- FROM customers c
+- LEFT JOIN sales s ON c.customer_id = s.customer_id;
+
+
+-- 고객 등급 및 활성도 분류
+
+- SELECT 
+-   c.customer_id,
+-   c.customer_name,
+-   COUNT(s.id) AS 구매건수,
+-   COALESCE(SUM(s.total_amount), 0) AS 총구매액,
+-   CASE
+-     WHEN COUNT(s.id) >= 5 THEN '충성고객'
+-     WHEN COUNT(s.id) >= 3 THEN '일반고객'
+-     WHEN COUNT(s.id) >= 1 THEN '신규고객'
+-     ELSE '잠재고객'
+-   END AS 활성도
+- FROM customers c
+- LEFT JOIN sales s ON c.customer_id = s.customer_id
+- GROUP BY c.customer_id, c.customer_name;
+
+---
+
+## 🧠 Summary
+
+-	서브쿼리는 “평균보다 높은”, “~~한 적 있는”, “~~한 사람들의” 같은 패턴에 유용하다.
+-	다만 JOIN이 더 직관적인 상황이라면 서브쿼리보다 JOIN을 택하는 게 좋음.
+-	ABS(), CASE, COALESCE() 등을 활용하면 훨씬 더 풍부한 분석이 가능하다.
+
+---
+
+## 💬 느낀점
+
+- 서브쿼리는 SQL의 ‘조건식 응용력’ 그 자체라고 느꼈다.
+- 특히 단일값과 다중값의 구분, 그리고 상황에 따라 JOIN과 서브쿼리를 판단해서 선택하는 능력이 중요하다는 걸 알게 되었다.
+- 하나의 질문에 여러 방식으로 접근할 수 있는 유연한 사고를 키우고 싶다 💡
+
+---
+
+## 🗂️ Reference
+
+-	https://sqlzoo.net
+-	https://www.w3schools.com/sql/
+-	실습 파일: 16-subquery1.sql, 17-subquery2.sql, 18-join.sql, p08.sql
+
