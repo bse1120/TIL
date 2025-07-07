@@ -452,3 +452,107 @@ Subject: SQL Basic DAY 2
 -	https://www.w3schools.com/sql/
 -	실습 파일: 16-subquery1.sql, 17-subquery2.sql, 18-join.sql, p08.sql
 
+
+
+
+
+
+
+## 🌱 Today I Learned
+
+## 📅 Date
+2025-07-04
+
+## Subject: SQL Basic Day 5 - JOIN, GROUP BY, Subquery, View, 고객 분석 실습
+
+---
+
+## 📘 What I Learned
+
+- ✨ INNER JOIN, LEFT JOIN을 활용한 다중 테이블 분석
+- ✨ GROUP BY + 집계함수(COUNT, SUM, AVG, MAX)로 요약 통계
+- ✨ HAVING과 인라인 뷰를 활용한 조건 필터링
+- ✨ 고객 상태, 등급, 월별 분석을 위한 다양한 서브쿼리 응용
+- ✨ CREATE VIEW로 재사용 가능한 분석 테이블 생성
+
+---
+
+## 🔍 Detail
+
+✅ JOIN 문
+
+-- 고객 정보와 주문 정보 조인 (구매한 고객만)
+
+- SELECT * 
+- FROM customers c
+- INNER JOIN sales s ON c.customer_id = s.customer_id;
+
+-- 모든 고객 + 구매 내역 포함 (없어도 포함)
+
+- SELECT * 
+- FROM customers c
+- LEFT JOIN sales s ON c.customer_id = s.customer_id;
+
+✅ GROUP BY + 집계
+
+-- 고객 등급별 평균 구매액
+
+- SELECT customer_type, AVG(total_amount)
+- FROM customers c
+- JOIN sales s ON c.customer_id = s.customer_id
+- GROUP BY customer_type;
+
+✅ CASE문 + 고객 등급 분류
+
+-- 활동등급 & 구매등급 기준으로 고객 분류
+
+- CASE
+-   WHEN COUNT(s.id) >= 10 THEN '플래티넘'
+-   WHEN COUNT(s.id) >= 5 THEN '골드'
+-   ...
+- END AS 활동등급
+
+✅ Subquery & Inline View
+
+-- 평균 이상 매출 카테고리
+
+- SELECT category, AVG(total_amount) 
+- FROM sales
+- GROUP BY category
+- HAVING AVG(total_amount) > 500000;
+
+-- 인라인 뷰 예시
+
+- SELECT * FROM (
+-   SELECT category, AVG(total_amount) AS 평균
+-   FROM sales GROUP BY category
+- ) AS summary
+- WHERE 평균 > 500000;
+
+✅ CREATE VIEW
+
+- CREATE VIEW customer_summary AS
+- SELECT c.customer_id, c.customer_name, COUNT(s.id) AS 주문횟수, ...
+- FROM customers c
+- LEFT JOIN sales s ON c.customer_id = s.customer_id
+- GROUP BY c.customer_id;
+
+________________________________________
+
+## 🧠 Summary
+-	다양한 실무형 SQL 쿼리를 JOIN과 GROUP BY, Subquery로 구현할 수 있게 됨
+-	VIEW를 통해 복잡한 쿼리를 단순화하고 재사용 가능하게 설계
+-	고객 분석 실습을 통해 SQL을 비즈니스 인사이트 도출에 어떻게 활용하는지 체감함
+
+________________________________________
+## 💬 느낀점
+- 하나의 데이터를 다양한 방식으로 분류하고 분석하는 능력이 데이터 해석력과 직결된다는 걸 느꼈다.
+- 이제 단순 조회를 넘어, SQL로 '질문하고 해답을 찾는’ 분석이 가능해진 것 같다 ✨
+
+________________________________________
+
+## 🗂️ Reference
+-	SQL JOIN 개념
+-	MySQL CREATE VIEW 문서
+-	강의자료 및 실습 스크립트 19-join-group.sql, 20-subquery3.sql, 21-view.sql, p09.sql
+
