@@ -118,3 +118,101 @@
 
 
 
+
+---
+
+## 🌱 Today I Learned
+
+## 📅 Date
+2025-07-08 (화)
+
+## 📘 Subject
+PostgreSQL 고급 데이터 타입 & 대용량 데이터 처리 및 인덱싱
+
+---
+
+## 🔍 What I Learned
+
+✅ PostgreSQL 고유 데이터 타입 활용
+-	TEXT[]: 문자열 배열 (예: 태그)
+-	JSONB: 정렬/검색 가능한 JSON 객체
+-	INET: IP 주소 전용 타입
+-	POINT: 좌표 값 (기하학)
+-	INT4RANGE: 정수 범위
+
+- SELECT name, tags[1] AS 첫번째태그, 'PostgreSQL' = ANY(tags) AS 포스트그레스_유저
+- FROM datatype_demo;
+
+- SELECT name, metadata->>'department' AS 부서
+- FROM datatype_demo
+- WHERE metadata @> '{"level":"senior"}';
+
+✅ generate_series() 함수
+-	대량 데이터 생성 시 유용
+-	날짜, 시간, 숫자 시퀀스를 간단하게 생성 가능
+
+- SELECT generate_series('2024-01-01'::date, '2024-12-31'::date, '1 day');
+
+✅ 대규모 데이터 테이블 생성
+-	large_orders: 100만 건 주문 데이터
+-	large_customers: 10만 건 고객 데이터
+
+- 실무 데이터를 시뮬레이션하며 JSONB, 배열, 랜덤 생성, 범위 타입 등의 활용법을 익힘
+
+---
+
+## 🧪 EXPLAIN / ANALYZE 실습
+
+-	EXPLAIN: 실행 계획 확인 (Cost, Rows, Width 등)
+-	ANALYZE: 실제 실행 포함 (실제 수행 시간, 버퍼 정보 등)
+-	FORMAT: JSON, VERBOSE, BUFFERS 옵션 활용 가능
+
+- EXPLAIN (ANALYZE, VERBOSE, BUFFERS)
+- SELECT * FROM large_customers WHERE loyalty_points > 8000;
+
+## 💡 잘못된 JOIN 확인
+- -- customer_name vs customer_id 를 잘못 JOIN한 예
+- LEFT JOIN large_orders o ON c.customer_name = o.customer_id
+
+---
+
+## ⚙️ 인덱스(Index) 실습
+
+✅ 단일 인덱스
+- CREATE INDEX idx_orders_customer_id ON large_orders(customer_id);
+-	인덱스 생성 전: 37506 rows / 131ms
+-	인덱스 생성 후: 87 rows / 0.08ms
+
+✅ 복합 인덱스와 순서 중요성
+- -- region + amount 순서
+- CREATE INDEX idx_orders_region_amount ON large_orders(region, amount);
+-	고유값(카디널리티)이 높을수록 먼저 배치
+-	SELECTIVITY 분석으로 인덱스 우선순위 결정
+- SELECT COUNT(DISTINCT amount) * 100 / COUNT(*) AS 선택도 FROM large_orders;
+- -- 99% → 매우 좋은 인덱스 후보
+
+---
+
+## 📈 Insights
+
+-	PostgreSQL은 강력한 데이터 타입과 고급 인덱싱 전략을 통해 대규모 데이터 분석에 적합하다.
+-	EXPLAIN (ANALYZE)로 쿼리 병목을 직접 확인하고, 성능 개선이 가능하다.
+-	실무에서는 JSONB, 배열, 범위, 위치 타입 등의 활용도가 높다.
+
+---
+
+## 💬 느낀점
+
+- MySQL보다 더 풍부하고 정교한 PostgreSQL의 기능들 덕분에, 데이터 모델링이 훨씬 유연하고 표현력 있게 느껴졌다.
+- 실습을 통해 "데이터를 구조화하고 빠르게 검색하는 기술"이 얼마나 중요한지를 체감했다.
+- 특히 EXPLAIN ANALYZE는 쿼리를 '읽는 기술'이기도 하다는 걸 알게 된 하루였다.
+
+---
+
+## 🗂️ Reference
+
+-	실습 파일: pg-01-datatype.sql ~ pg-04-index.sql
+-	PostgreSQL 공식문서: https://www.postgresql.org/docs
+-	generate_series() 문서: 함수 레퍼런스
+
+---
