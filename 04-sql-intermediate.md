@@ -241,7 +241,7 @@ PostgreSQL 고급 데이터 타입 & 대용량 데이터 처리 및 인덱싱
 
 -- 실제 사용 예
 - SELECT * FROM large_customers WHERE age = 30 LIMIT 10;
-
+```
 ---
 
 ## 📈 Insights
