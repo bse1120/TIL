@@ -267,3 +267,88 @@ PostgreSQL 고급 데이터 타입 & 대용량 데이터 처리 및 인덱싱
 -	generate_series() 문서: 함수 레퍼런스
 
 ---
+
+
+
+
+
+
+
+## 🌱 Today I Learned
+
+## 📅 Date
+2025-07-09 (수)
+
+## 📘 Subject
+PostgreSQL - CTE, Recursive CTE, Window Function
+
+---
+
+## ✅ What I Learned
+
+1. 📦 CTE (Common Table Expression)
+- 복잡한 쿼리를 이름 있는 임시 테이블처럼 나눠서 작성
+-	WITH ~ AS () 형식 사용
+-	가독성 향상, 디버깅 용이, 중복 계산 제거에 유리
+```sql
+복사편집
+WITH avg_order AS (
+	SELECT AVG(amount) AS avg_amount FROM orders
+)
+SELECT customer_name, amount
+FROM orders
+WHERE amount > (SELECT avg_amount FROM avg_order);
+```
+---
+
+## 2. 🔁 Recursive CTE
+
+- CTE 안에서 자기 자신을 재귀적으로 호출하는 구조
+-	주로 계층 구조, 달력 생성, 수열 생성 등에 사용
+```sql
+복사편집
+WITH RECURSIVE numbers AS (
+	SELECT 1 AS num
+	UNION ALL
+	SELECT num + 1 FROM numbers WHERE num < 10
+)
+SELECT * FROM numbers;
+```
+________________________________________
+3. 🔍 Window Function (OVER())
+
+- 각 행에 대해 전체 또는 그룹 기준의 통계를 함께 보여줌
+-	AVG() OVER(), ROW_NUMBER() OVER(ORDER BY ...), RANK(), DENSE_RANK() 등
+-	GROUP BY 없이도 행 단위로 통계값 확인 가능
+```sql
+복사편집
+SELECT order_id, amount,
+	AVG(amount) OVER() AS 전체평균,
+	ROW_NUMBER() OVER(ORDER BY amount DESC) AS 순위
+FROM orders;
+```
+________________________________________
+
+4. 📊 고객 등급 분류 (CTE 활용한 분석 예시)
+-	고객을 VIP, 일반, 신규로 구분 (상위 20%, 평균 이상, 나머지)
+-	PERCENTILE_CONT, CASE, CROSS JOIN 사용
+-	등급별 통계 도출 (총 구매액, 평균 주문 수)
+
+________________________________________
+
+## 🔧 Keywords & Functions
+- 개념/함수	설명
+- CTE	임시 테이블처럼 쓰는 쿼리 블록 (WITH)
+- RECURSIVE	자기 자신을 호출하는 CTE
+- OVER()	윈도우 함수 지정
+- ROW_NUMBER()	정렬 기준으로 순위 부여
+- RANK(), DENSE_RANK()	공동 순위 처리 방식 다름
+- PERCENTILE_CONT()	분위수 계산 함수 (예: 상위 20%)
+	
+________________________________________
+
+## 💭 Feeling
+- 오늘은 PostgreSQL의 CTE와 윈도우 함수, 재귀 쿼리를 심화로 학습했다.
+- 기능은 유용하지만 문법이 많고 생소해서 조금 어렵게 느껴졌다.
+- 특히 RECURSIVE, PERCENTILE_CONT, OVER()와 같은 키워드들은 복습이 필요하다.
+- 쿼리 흐름을 단계별로 쪼개고, 중간 결과를 직접 출력하며 연습하는 게 중요하다고 느꼈다.
