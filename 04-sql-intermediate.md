@@ -277,7 +277,7 @@ PostgreSQL 고급 데이터 타입 & 대용량 데이터 처리 및 인덱싱
 ## 🌱 Today I Learned
 
 ## 📅 Date
-2025-07-09 (수)
+2025-07-09 (화)
 
 ## 📘 Subject
 PostgreSQL - CTE, Recursive CTE, Window Function
@@ -314,7 +314,9 @@ WITH RECURSIVE numbers AS (
 )
 SELECT * FROM numbers;
 ```
-________________________________________
+
+---
+
 3. 🔍 Window Function (OVER())
 
 - 각 행에 대해 전체 또는 그룹 기준의 통계를 함께 보여줌
@@ -327,14 +329,15 @@ SELECT order_id, amount,
 	ROW_NUMBER() OVER(ORDER BY amount DESC) AS 순위
 FROM orders;
 ```
-________________________________________
+
+---
 
 4. 📊 고객 등급 분류 (CTE 활용한 분석 예시)
 -	고객을 VIP, 일반, 신규로 구분 (상위 20%, 평균 이상, 나머지)
 -	PERCENTILE_CONT, CASE, CROSS JOIN 사용
 -	등급별 통계 도출 (총 구매액, 평균 주문 수)
 
-________________________________________
+---
 
 ## 🔧 Keywords & Functions
 - 개념/함수	설명
@@ -345,10 +348,101 @@ ________________________________________
 - RANK(), DENSE_RANK()	공동 순위 처리 방식 다름
 - PERCENTILE_CONT()	분위수 계산 함수 (예: 상위 20%)
 	
-________________________________________
+---
 
 ## 💭 Feeling
 - 오늘은 PostgreSQL의 CTE와 윈도우 함수, 재귀 쿼리를 심화로 학습했다.
 - 기능은 유용하지만 문법이 많고 생소해서 조금 어렵게 느껴졌다.
 - 특히 RECURSIVE, PERCENTILE_CONT, OVER()와 같은 키워드들은 복습이 필요하다.
 - 쿼리 흐름을 단계별로 쪼개고, 중간 결과를 직접 출력하며 연습하는 게 중요하다고 느꼈다.
+
+
+
+
+
+
+
+---
+
+## 🌱 Today I Learned
+
+## 📅 Date
+2025-07-10 (수)
+
+## 📘 Subject
+- PostgreSQL 고급 쿼리 심화 
+- (Window Function, PARTITION, LAG/LEAD, NTILE, PERCENT_RANK 등)
+
+---
+
+## ✅ What I Learned
+
+1. 🪟 Window 함수 (OVER() 사용)
+
+- 그룹 없이도 각 행에 대해 통계나 순위를 계산
+-	AVG() OVER(): 전체 평균
+-	ROW_NUMBER() OVER(ORDER BY ...): 일련번호 부여
+-	RANK(), DENSE_RANK(): 공동 순위 처리
+-	PARTITION BY: 그룹 내에서 통계 적용
+```sql
+ SELECT customer_id, amount,
+        AVG(amount) OVER() AS 전체평균,
+       ROW_NUMBER() OVER (ORDER BY amount DESC) AS 순위
+FROM orders;
+```
+
+---
+
+2. 📊 PARTITION BY
+- 윈도우 함수를 특정 그룹 기준으로 적용 (ex. 지역별, 월별 등)
+```sql
+ ROW_NUMBER() OVER (PARTITION BY region ORDER BY amount DESC) AS 지역순위
+ ```
+
+---
+
+3. 🔁 LAG / LEAD 함수
+- 이전값(LAG), 다음값(LEAD)을 가져와 변화 추적
+-	전월대비 매출 증가/감소 계산
+-	고객별 구매 간격 분석
+```sql
+ LAG(amount, 1) OVER (PARTITION BY customer_id ORDER BY order_date) AS 이전구매금액
+ ```
+
+---
+
+4. 🧭 NTILE / PERCENT_RANK / FIRST_VALUE / LAST_VALUE
+-	NTILE(n): 데이터를 n등분
+-	PERCENT_RANK(): 백분율 순위
+-	FIRST_VALUE, LAST_VALUE: 그룹 내 최고/최저 항목 추출
+```sql
+ NTILE(4) OVER (ORDER BY 총구매금액) AS 분위4
+ PERCENT_RANK() OVER (ORDER BY price) AS 백분위순위
+ ```
+
+---
+
+## 🔧 정리된 함수/용어
+
+- 함수	설명
+- OVER()	윈도우 함수 실행 범위 지정
+- PARTITION BY	그룹 단위 지정
+- ROW_NUMBER()	고유한 순번 부여
+- RANK(), DENSE_RANK()	공동 순위 처리
+- LAG(), LEAD()	이전/다음 행 참조
+- NTILE(n)	데이터 n등분
+- PERCENT_RANK()	백분율 순위 계산
+- FIRST_VALUE(), LAST_VALUE()	파티션 기준 첫/마지막 값 반환
+	
+---
+
+## 💭 Feeling
+- 하루하루 SQL이 단순 조회에서 고급 분석 도구로 보이기 시작했다.
+- 특히 PARTITION, LAG, LEAD, NTILE, PERCENT_RANK는
+- 데이터 흐름을 읽는 감각이 필요해서 쉽진 않지만
+- 구조가 잡히는 느낌이 들었다.
+- 아직 함수나 윈도우 범위에 대한 감각은 부족하지만,
+- 반복 학습을 통해 점점 익숙해질 것 같다.
+- 복잡한 쿼리도 단계별로 나누고, 출력해보는 습관을 들이자.
+
+---
