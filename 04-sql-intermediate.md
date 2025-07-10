@@ -124,7 +124,7 @@
 ## 🌱 Today I Learned
 
 ## 📅 Date
-2025-07-08 (화)
+2025-07-08
 
 ## 📘 Subject
 PostgreSQL 고급 데이터 타입 & 대용량 데이터 처리 및 인덱싱
@@ -277,7 +277,7 @@ PostgreSQL 고급 데이터 타입 & 대용량 데이터 처리 및 인덱싱
 ## 🌱 Today I Learned
 
 ## 📅 Date
-2025-07-09 (화)
+2025-07-09
 
 ## 📘 Subject
 PostgreSQL - CTE, Recursive CTE, Window Function
@@ -372,7 +372,7 @@ FROM orders;
 ## 🌱 Today I Learned
 
 ## 📅 Date
-2025-07-10 (수)
+2025-07-10
 
 ## 📘 Subject
 - PostgreSQL 고급 쿼리 심화 
