@@ -356,6 +356,11 @@ FROM orders;
 - 특히 RECURSIVE, PERCENTILE_CONT, OVER()와 같은 키워드들은 복습이 필요하다.
 - 쿼리 흐름을 단계별로 쪼개고, 중간 결과를 직접 출력하며 연습하는 게 중요하다고 느꼈다.
 
+---
+
+## 📂 Reference: 
+- 실습 파일: pg-06-cte.sql, pg-07-recursive-cte.sql
+
 
 
 
@@ -446,3 +451,6 @@ FROM orders;
 - 복잡한 쿼리도 단계별로 나누고, 출력해보는 습관을 들이자.
 
 ---
+
+## 📂 Reference: 
+- 실습 파일: pg-08-window.sql, pg-09-partition.sql, pg-10-lag-lead.sql, pg-11-ntile-percent.sql
