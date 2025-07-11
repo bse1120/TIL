@@ -454,3 +454,89 @@ FROM orders;
 
 ## 📂 Reference: 
 - 실습 파일: pg-08-window.sql, pg-09-partition.sql, pg-10-lag-lead.sql, pg-11-ntile-percent.sql
+
+
+
+
+
+
+
+---
+
+## 🌱 Today I Learned
+
+## 📅 Date
+2025-07-11
+
+## 🧠 What I Learned
+- 오늘은 SQL 프로젝트 데이로, 실제 데이터셋을 활용해 다양한 쿼리 실습을 진행했다. 
+- 상중하 난이도별로 문제들을 해결하면서 JOIN, GROUP BY, 집계함수, 윈도우 함수 등 지금까지 배운 내용을 실전 감각으로 익혔다. 
+- 아래는 오늘 해결한 주요 문제 유형이다:
+
+---
+
+## 🟢 난이도 하
+
+- 1.	모든 고객 목록 조회
+- → 기본 SELECT / ORDER BY 실습
+- 2.	모든 앨범과 아티스트 이름 출력
+- → JOIN 기본 사용법 이해
+- 3.	5분 이상 트랙 조회
+- → 조건절 WHERE와 밀리초 기준 필터링
+- 4.	국가별 고객 수 집계
+- → GROUP BY와 COUNT(*) 조합 익힘
+- 5.	각 장르별 트랙 수 집계
+- → LEFT JOIN을 사용한 Null 처리 포함
+
+---
+
+## 🟡 난이도 중
+
+- 1.	직원별 담당 고객 수
+- → LEFT JOIN + GROUP BY 활용한 외부조인 집계
+- 2.	가장 많이 팔린 트랙 TOP 5
+- → SUM(), GROUP BY, ORDER BY, LIMIT 조합
+- 3.	2020년 이전 첫 구매 고객
+- → MIN(invoice_date) + HAVING 조건 사용
+- 4.	국가별 총 매출 집계 (상위 10개)
+- → SUM() 집계와 LIMIT 조합
+- 5.	각 고객의 최근 구매 내역
+- → 서브쿼리 버전 vs 윈도우 함수 ROW_NUMBER() 비교 실습
+
+---
+
+## 🔴 난이도 상
+
+- 1.	월별 매출 및 전월 대비 증감률
+- → LAG() 함수로 전월 매출 비교, 증감률 계산과 ROUND() 사용
+- 2.	장르별 상위 3명 아티스트 및 트랙 수
+- → RANK() OVER (PARTITION BY)로 그룹 내 랭킹 산출
+- 3.	고객별 누적 구매액 및 등급
+- → NTILE(5)을 활용한 분위 나누기 + 고객 등급 분류 (VIP, Normal, Low)
+- 4.	국가별 재구매율
+- → CASE WHEN, ROUND()로 2회 이상 구매 고객 비율 계산
+- 5.	최근 1년간 월별 신규 고객 및 잔존 고객 분석
+- → MIN()으로 고객 첫 구매월 산출, JOIN으로 신규/잔존 분류
+
+---
+
+## 💭 느낀점
+
+- "틀이 잡힌다"는 느낌이 정말 와닿는 하루였다. 
+- 기초 문법만 알던 상태에서 이제는 데이터를 분석하고 인사이트를 뽑아내는 흐름이 조금씩 익숙해지는 중이다. 
+- 작은 문제 하나에도 논리를 구성하고 쿼리를 짜는 게 점점 더 재미있어지고 있다. 
+- 내일은 오늘보다 한층 더 복잡한 문제에 도전해보고 싶다.
+
+---
+
+## 📂 Reference
+
+-	📁 파일: project 1-1.sql ~ 3-5.sql
+-	🧠 실습 환경: pgAdmin 4
+-	🧰 학습 키워드:
+-	기본 SQL: SELECT, FROM, JOIN, GROUP BY, ORDER BY, WHERE, HAVING, LIMIT
+-	집계 함수: COUNT(), SUM(), AVG(), MIN(), MAX(), ROUND()
+-	윈도우 함수: ROW_NUMBER(), RANK(), DENSE_RANK(), NTILE(), LAG(), LEAD(), PERCENT_RANK(), FIRST_VALUE(), LAST_VALUE()
+-	날짜 함수: TO_CHAR(), DATE_TRUNC(), INTERVAL
+-	CTE(WITH) 사용 패턴
+-	서브쿼리 vs 윈도우 함수 비교 활용
