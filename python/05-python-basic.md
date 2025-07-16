@@ -221,7 +221,7 @@ def multiply(x, y, z):
 ## 🌱 Today I Learned
 
 ## 📅 Date
-2025-07-15 (화)
+2025-07-16
 
 ## 📘 Subject
 Python - 제어문(Control Statement)
