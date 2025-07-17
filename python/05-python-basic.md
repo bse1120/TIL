@@ -311,3 +311,102 @@ for i, v in enumerate(리스트):
 -	elif의 순서를 고려하여 구체적인 조건부터 위로 배치할 것
 -	while문에서는 종료 조건 없을 시 무한 루프 발생 주의
 -	for-else 문은 처음 써봤지만 매우 유용한 구조라는 것 알게 됨
+
+
+
+
+
+
+
+--- 
+
+## 🌱 Today I Learned
+
+## 📅 Date
+2025-07-17
+
+## 🐍 Python - 자료구조 (Data Structure)
+
+---
+
+## ✅ 학습 내용
+
+오늘은 **파이썬의 데이터 구조(Data Structure)**를 학습했다.
+자료형의 종류를 기준으로 순서 있는 구조와 순서 없는 구조로 나누어 각 컨테이너의 속성과 메서드를 실습을 통해 익혔다.
+
+---
+
+## 🔹 데이터 구조란?
+
+-	데이터의 구성, 저장 방식, 관리 방법을 의미
+-	값, 값 간의 관계, 해당 데이터에 적용할 수 있는 명령어들의 집합
+-	효율적인 접근 및 수정을 가능케 함
+
+---
+
+## 📂 데이터 구조 분류
+
+순서가 있는 구조 (Ordered)	순서가 없는 구조 (Unordered)
+문자열 (str)	셋 (set)
+리스트 (list)	딕셔너리 (dict)
+튜플 (tuple)	
+	
+---
+
+## 📘 순서가 있는 구조
+
+✅ 문자열 (str)
+-	불변(immutable) / 순서 있음(ordered) / 순회 가능(iterable)
+-	다양한 검증 및 조작 메서드 제공
+-	주요 메서드: .find(), .index(), .startswith(), .isalpha(), .replace(), .strip(), .split(), .join(), .upper() 등
+-	예: 'hello'.startswith('h') → True, 'apple'.find('z') → -1
+
+✅ 리스트 (list)
+-	가변(mutable) / 순서 있음 / 반복 가능
+-	값 추가/삭제, 정렬 등 다양한 조작 가능
+-	주요 메서드: .append(), .extend(), .insert(), .remove(), .pop(), .sort(), .reverse(), .count(), .index()
+-	예: lst.append(x), lst.sort(reverse=True)
+
+✅ 튜플 (tuple)
+-	불변(immutable) / 순서 있음
+-	변경 불가능하므로 탐색 관련 메서드만 존재
+-	주요 메서드: .index(), .count()
+-	예: ('a', 'b', 'c').count('a') → 1
+
+---
+
+## 📘 순서가 없는 구조
+
+✅ 셋 (set)
+-	가변(mutable) / 순서 없음 / 중복 허용 X
+-	수학의 집합 개념과 유사 (합집합, 교집합 등 가능)
+-	주요 메서드: .add(), .update(), .remove(), .discard()
+-	예: {1, 2, 3}.add(4), {1, 2}.remove(5) → KeyError
+
+✅ 딕셔너리 (dict)
+-	가변(mutable) / 순서 없음
+-	Key:Value 쌍의 구조
+-	주요 메서드: .get(), .setdefault(), .pop(), .update()
+-	예: d.get('apple', '없음'), d.update({'key':'value'})
+
+---
+
+## 🧠 얕은 복사 vs 깊은 복사
+
+✅ 변경 불가능한 자료형 (immutable):
+-	복사 시 새로운 객체가 생성됨
+-	예: int, str, tuple
+
+✅ 변경 가능한 자료형 (mutable):
+-	단순 할당 시 동일 객체를 참조함 (id() 동일)
+-	복사 방법
+o	얕은 복사: copy(), list(), 슬라이싱 [:]
+o	깊은 복사: copy.deepcopy()
+
+---
+
+## 💡 느낀점
+-	자료구조는 데이터의 특성에 따라 적절히 선택해야 한다는 점을 체감함
+-	리스트의 append, extend 차이와 sort, reverse는 꼭 구분해서 사용해야 함
+-	문자열과 리스트는 실습을 통해 메서드 사용법이 익숙해졌고, 딕셔너리와 셋은 실무에서도 자주 쓰일 수 있는 강력한 구조라는 걸 느꼈음
+-	특히 얕은 복사 vs 깊은 복사의 차이를 시각화 도구로 확인하며 직관적으로 이해할 수 있었음
