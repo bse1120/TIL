@@ -896,3 +896,82 @@ Python 기반 Telegram 챗봇 만들기 기초 + FastAPI 연동
 -	API 구조와 JSON 응답을 직접 다뤄보면서 챗봇 동작 원리를 눈으로 확인하니 확실히 이해가 쉬웠다.
 -	조건 분기문을 활용한 로직 처리 연습이 자연스럽게 이뤄졌다.
 -	이후에는 webhook 방식으로 전환하거나, FastAPI 서버와 Telegram 봇을 연결해 실시간 반응하는 챗봇으로 확장해보고 싶다.
+
+
+
+
+
+
+
+---
+
+## 🌱 Today I Learned
+
+## 📅 Date
+2025-07-25
+
+## 🐍 Python
+Telegram 챗봇, FastAPI, Webhook, OpenAI 연동
+
+-
+
+1. 📲 Telegram Bot 기초 사용법 정리
+
+•	bot_token을 이용해 URL을 구성하여 텔레그램 API 호출:
+-	getMe: 봇 정보 확인
+-	getUpdates: 대화 내용 수신
+-	sendMessage: 사용자에게 메시지 전송
+•	chat_id와 text 값을 바탕으로 메시지를 보내는 형식:
+•	requests.get(URL + '/sendMessage', body).json()
+
+---
+
+2. 🧩 사용자 메시지 수신 및 자동 응답
+
+•	텔레그램 API에서 받은 JSON 데이터를 분석하여 사용자 메시지 및 ID 추출:
+•	data = requests.get(URL + '/getUpdates').json()
+•	last_text = data["result"][-1]["message"]["text"]
+•	last_chat_id = data["result"][-1]["message"]["from"]["id"]
+•	조건문을 활용해 사용자의 입력에 따라 응답 메시지 결정:
+-	"로또" → 랜덤 번호 6개 응답
+-	"안녕" → "ㅎㅇ"
+-	그 외 → "기영이는 그런거 몰루 ><"
+
+---
+
+3. ⚡ FastAPI로 Webhook 서버 구현
+
+•	/telegram 라우트에서 텔레그램의 POST 요청 수신
+•	Request 객체에서 사용자 메시지, chat_id 추출
+•	응답 메시지는 OpenAI GPT API로 생성:
+•	client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+•	res = client.responses.create(
+•	    model='gpt-4.1-mini',
+•	    input=input_msg,
+•	    instructions='너는 츤데레 17세 여고생이야. 츤츤거려줘.'
+•	)
+•	send_message(sender_id, res.output_text)
+
+---
+
+4. 🌱 .env 파일 및 보안
+•	.env 파일에 TELEGRAM_BOT_TOKEN, OPENAI_API_KEY 등 민감 정보 저장
+•	.gitignore 파일을 통해 .env 제외 처리 → Git에 올라가지 않게 주의
+
+---
+
+5. 🧪 학습하면서 느낀 점
+•	Webhook 방식은 getUpdates 방식보다 훨씬 실시간성 높고 효율적
+•	텔레그램 챗봇 API의 구조와 JSON 응답 형태에 익숙해졌음
+•	FastAPI의 비동기 처리와 라우팅 구조에 대한 이해도가 높아짐
+•	OpenAI API와 텔레그램 연동을 통해 실제 활용 가능한 챗봇 제작 가능성 확인
+•	챗봇의 캐릭터성(17세 츤데레 여고생 설정 등)을 통해 재미 요소 부여 가능함
+
+---
+
+✅ 내일 할 일
+•	메시지 타입이 이미지/명령어일 때 대응 처리도 추가하기
+•	Webhook URL 등록 및 배포환경에서 테스트 진행
+•	GPT 응답 캐릭터 바리에이션도 테스트 해보기
+
+

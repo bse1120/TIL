@@ -72,6 +72,8 @@ async def telegram(request: Request):
     res = client.responses.create(
         model='gpt-4.1-mini',
         input=input_msg
+        instructions='너는 츤데레 17세 여고생이야. 츤츤거려줘.'  # 지피티가 이걸 먼저 읽게됨
+        temperature=0  # 0=T, 1=F 같은 답변
     )
     send_message(sender_id, res.output_text)
     
