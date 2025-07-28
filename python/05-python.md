@@ -975,3 +975,147 @@ Telegram 챗봇, FastAPI, Webhook, OpenAI 연동
 •	GPT 응답 캐릭터 바리에이션도 테스트 해보기
 
 
+
+
+
+
+
+---
+
+## 🌱 Today I Learned
+
+## 📅 Date
+2025-07-28
+
+## 🐍 객체지향 프로그래밍 (Object-Oriented Programming, OOP)
+
+---
+
+## ✅ 오늘의 학습 키워드
+
+-	객체(Object)와 클래스(Class)
+-	인스턴스(Instance)와 메서드(Method)
+-	생성자 / 소멸자
+-	클래스 변수 / 인스턴스 변수
+-	인스턴스 메서드 / 클래스 메서드 / 스태틱 메서드
+-	매직 메서드(__init__, __str__, __gt__, __eq__ 등)
+-	이름 공간(namespace)
+
+---
+
+1️⃣ 객체(Object)란?
+-	Python에서 모든 것은 객체!
+-	객체는 세 가지 주요 요소를 가짐
+o	타입(type): 어떤 연산이 가능한지
+o	속성(attribute): 어떤 상태나 데이터를 가지는지
+o	조작법(method): 어떤 행위를 할 수 있는지
+
+---
+
+2️⃣ 객체지향프로그래밍(OOP)이란?
+-	명령어의 나열이 아닌, 객체 단위의 프로그래밍 패러다임
+-	프로그램을 객체들의 상호작용으로 설계
+-	💡 장점:
+o	코드의 직관성
+o	기능의 재사용성
+o	프로그램 유연성 & 확장성
+
+---
+
+3️⃣ 클래스와 인스턴스
+-	클래스: 객체의 설계도, 공통 속성과 메서드를 정의
+-	인스턴스: 클래스로부터 생성된 실제 객체
+class Person:
+    pass
+
+p1 = Person()  # p1은 Person 클래스의 인스턴스
+
+---
+
+4️⃣ 속성과 메서드
+-	속성(attribute): 객체의 상태(예: 이름, 나이 등)
+-	메서드(method): 객체가 할 수 있는 행동 (예: talk(), eat())
+class Person:
+    def __init__(self, name):
+        self.name = name
+
+    def talk(self):
+        print(f'안녕, 나는 {self.name}')
+
+---
+
+5️⃣ 생성자 & 소멸자
+-	__init__: 인스턴스가 생성될 때 자동 호출, 초기값 설정
+-	__del__: 인스턴스가 소멸될 때 자동 호출, 정리 작업 등 수행
+class Person:
+    def __init__(self):
+        print("응애! 태어났따")
+    
+    def __del__(self):
+        print("윽... 나 간다")
+
+---
+
+6️⃣ 인스턴스 메서드 / 클래스 메서드 / 스태틱 메서드
+-	인스턴스 메서드: self를 첫 인자로 받아 인스턴스와 상호작용
+-	클래스 메서드: @classmethod + cls를 첫 인자로 받아 클래스와 상호작용
+-	스태틱 메서드: @staticmethod + 어떤 인자도 자동 전달되지 않음
+class MyClass:
+    def instance_method(self):
+        return self
+    
+    @classmethod
+    def class_method(cls):
+        return cls
+    
+    @staticmethod
+    def static_method():
+        return '기능만 수행'
+
+---
+
+7️⃣ 매직 메서드
+-	__str__: 객체를 print() 했을 때 출력되는 문자열 정의
+-	__eq__, __gt__, __add__: 객체 비교 및 연산을 사용자 정의
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def __str__(self):
+        return f'Person: {self.name}'
+
+    def __gt__(self, other):
+        return self.age > other.age
+
+    def __eq__(self, other):
+        return self.age == other.age
+
+---
+
+8️⃣ 이름공간(Namespace)
+-	클래스와 인스턴스 각각 고유의 이름공간을 가짐
+-	속성 접근 시 인스턴스 → 클래스 순으로 탐색
+class Person:
+    name = 'unknown'
+
+p1 = Person()
+print(p1.name)  # 클래스 변수
+p1.name = 'kim'  # 인스턴스 변수로 재정의
+print(p1.name)
+
+---
+
+## 📝 느낀 점
+-	지금까지 함수 중심의 코딩만 접했다면, 오늘 배운 OOP 개념은 완전히 새로운 사고방식이었다.
+-	self와 생성자/소멸자 개념, 인스턴스와 클래스의 차이 등을 직접 코딩해 보며 더 쉽게 이해할 수 있었다.
+-	매직 메서드를 통해 객체 비교나 출력까지 커스터마이징할 수 있다는 점이 흥미로웠다.
+-	앞으로 다양한 클래스 설계나 협업 프로젝트에서 OOP 개념이 큰 도움이 될 것 같다.
+
+---
+
+## 🔁 내일 목표
+-	상속(Inheritance), 다형성(Polymorphism), 캡슐화(Encapsulation) 등 OOP 심화 개념 학습
+-	간단한 클래스 기반 미니 프로젝트 도전!
+
+---
