@@ -99,5 +99,3 @@ def analyze_missing_patterns(df: pd.DataFrame):
     plt.show()
 
     return missing_summary
-
-analyze_missing_patterns(ecommerce)
